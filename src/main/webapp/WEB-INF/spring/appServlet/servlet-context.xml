@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:context="http://www.springframework.org/schema/context"
+             xsi:schemaLocation="http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <!-- 어노테이션 기반으로 동작하도록 한다. 이게 없으면 @Controller등의 어노테이션 사용 불가-->
+    <annotation-driven />
+
+    <!---->
+    <resources mapping="/resources/**" location="/resources/" />
+
+    <!--라턴되는 view 이름의 접두사, 접미사-->
+    <beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <beans:property name="prefix" value="/WEB-INF/views/" />
+        <beans:property name="suffix" value=".jsp" />
+    </beans:bean>
+
+    <!--컴포넌트 스캔해서 빈(Bean) 으로 등록할 요소를 찾는다. -->
+    <context:component-scan base-package="org.example" />
+
+
+
+</beans:beans>
