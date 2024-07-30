@@ -28,8 +28,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public boolean exist(String userEmail) {
-        sqlSession.selectOne(namespace + "existInUser", userEmail);
-        return true;
+        return sqlSession.selectOne(namespace + "existInUser", userEmail);
     }
 
 

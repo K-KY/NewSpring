@@ -24,6 +24,7 @@ public class RegisterTest {
     private Register register;
 
     @Test
+    @Transactional
     @DisplayName("중복되는 Email은 저장하지 않는다.")
     void register_fail() {
         ResultResponseDto responseDto = register.register(new RegisterDto("kkk", "m", "1234.com", "kor", "0000"));
@@ -38,7 +39,7 @@ public class RegisterTest {
     void register_Success() {
         String randomValue = UUID.randomUUID().toString().substring(0, 10);
         ResultResponseDto responseDto = register.register(new RegisterDto("kkk", "m", randomValue, "kor", "0000"));
-        assertThat(responseDto.getMessage()).isEqualTo("회원가입 성공.");
+        assertThat(responseDto.getMessage()).isEqualTo("회원가입 성공");
         assertThat(responseDto.isSuccess()).isTrue();
         System.out.println("responseDto = " + responseDto);
     }

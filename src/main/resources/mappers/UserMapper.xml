@@ -15,9 +15,9 @@
         VALUES(#{userName}, #{userEmail}, #{userGender}, #{userRegion}, #{userSecret})
     </insert>
 
-    <select id="selectInUser" parameterType="String" resultType="boolean">
-        SELECT EXIST(
-            SELECT userEmail from user
+    <select id="existInUser" parameterType="String" resultType="boolean">
+        SELECT EXISTS(
+            SELECT userEmail FROM user WHERE userEmail = #{userEmail}
         )
     </select>
 
