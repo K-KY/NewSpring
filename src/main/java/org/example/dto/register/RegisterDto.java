@@ -2,12 +2,11 @@ package org.example.dto.register;
 
 import org.example.dto.Dto;
 
-public class RegisterDto implements Dto {
+public class RegisterDto {
     private final String userName;
     private final String userGender;
     private final String userEmail;
     private final String userRegion;
-
     private final String userSecret;
 
     public RegisterDto(String userName, String userGender, String userEmail, String userRegion, String userSecret) {

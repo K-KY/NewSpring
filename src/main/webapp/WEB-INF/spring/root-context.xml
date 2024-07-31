@@ -30,6 +30,6 @@
     </bean>
 
     <bean id="userDao" class="org.example.dao.user.UserDaoImpl"/>
-    <bean id="register" class="org.example.model.Register"/>
+    <bean id="register" class="org.example.model.UserService"/>
 
 </beans>

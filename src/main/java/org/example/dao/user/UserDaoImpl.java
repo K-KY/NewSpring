@@ -23,7 +23,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean insert(RegisterDto registerDto) {
         int insert = sqlSession.insert(namespace + "insertUser", registerDto);
-        return insert == 1;
+        int insertUserInfo = sqlSession.insert(namespace + "insertUserInfo", registerDto);
+        return insert == 1 && insertUserInfo == 1;
     }
 
     @Override

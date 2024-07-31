@@ -11,9 +11,16 @@
     <!-- userName은 파라미터 이름? -->
 
     <insert id="insertUser" parameterType="RegisterDto">
-        INSERT INTO user (userName, userEmail, userGender, userRegion, userSecret)
-        VALUES(#{userName}, #{userEmail}, #{userGender}, #{userRegion}, #{userSecret})
+        INSERT INTO user (userName, userEmail, userGender, userRegion)
+        VALUES(#{userName}, #{userEmail}, #{userGender}, #{userRegion});
     </insert>
+
+    <insert id="insertUserInfo" parameterType="RegisterDto">
+        INSERT INTO userLoginInfo (userEmail, userSecret)
+        VALUES(#{userEmail}, #{userSecret})
+    </insert>
+
+
 
     <select id="existInUser" parameterType="String" resultType="boolean">
         SELECT EXISTS(

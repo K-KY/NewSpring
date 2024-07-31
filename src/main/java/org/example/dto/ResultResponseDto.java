@@ -3,7 +3,7 @@ package org.example.dto;
 import org.example.dto.register.RegisterDto;
 
 
-public class ResultResponseDto<D> implements Dto {
+public class ResultResponseDto<D> {
     private D data;
     private boolean isSuccess;
     private String message;
