@@ -1,5 +1,6 @@
 package org.example.controller;
 
+import org.example.dto.LoginRequestDto;
 import org.example.dto.ResultResponseDto;
 import org.example.dto.register.RegisterDto;
 import org.example.model.UserService;
@@ -21,5 +22,10 @@ public class HelloController {
     @PostMapping(value ="/register", produces = "application/json; charset=UTF-8")
     public ResultResponseDto<RegisterDto> register(@RequestBody RegisterDto registerDto) {
         return userService.register(registerDto);
+    }
+
+    @GetMapping(value = "/login", produces = "application/json; charset=UTF-8")
+    public ResultResponseDto<?> login(@RequestBody LoginRequestDto loginRequestDto) {
+        return userService.login(loginRequestDto);
     }
 }

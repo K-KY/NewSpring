@@ -39,12 +39,7 @@ public class UserService {
 
     public ResultResponseDto<Object> login(LoginRequestDto loginRequestDto) {
         UserDto userDto = null;
-        if (temp.containsKey(loginRequestDto.getUserEmail())) {
-            userDto = temp.get(loginRequestDto.getUserEmail());
-        }
-        if (userDto == null) {
-            userDto = userDao.select(loginRequestDto.getUserEmail());
-        }
+        userDto = getUserDto(loginRequestDto, userDto);
         if (userDto != null && userDto.getUserSecret().equals(loginRequestDto.getUserSecret())) {
             temp.put(userDto.getUserEmail(), userDto);
             return new ResultResponseDto<>(userDto, true, "로그인 성공");
@@ -52,5 +47,13 @@ public class UserService {
         return new ResultResponseDto<>(loginRequestDto, false, "로그인 실패");
     }
 
-
+    private UserDto getUserDto(LoginRequestDto loginRequestDto, UserDto userDto) {
+        if (temp.containsKey(loginRequestDto.getUserEmail())) {
+            userDto = temp.get(loginRequestDto.getUserEmail());
+        }
+        if (userDto == null) {
+            userDto = userDao.select(loginRequestDto.getUserEmail());
+        }
+        return userDto;
+    }
 }

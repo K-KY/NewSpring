@@ -73,6 +73,4 @@ public class UserServiceTest {
         assertThat(login.isSuccess()).isFalse();
         System.out.println("login = " + login);
     }
-
-
 }
