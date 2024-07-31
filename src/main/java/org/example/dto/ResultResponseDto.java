@@ -3,19 +3,19 @@ package org.example.dto;
 import org.example.dto.register.RegisterDto;
 
 
-public class ResultResponseDto implements Dto {
-    private Dto dto;
+public class ResultResponseDto<D> implements Dto {
+    private D data;
     private boolean isSuccess;
     private String message;
 
-    public ResultResponseDto(Dto dto, boolean isSuccess, String message) {
-        this.dto = dto;
+    public ResultResponseDto(D data, boolean isSuccess, String message) {
+        this.data = data;
         this.isSuccess = isSuccess;
         this.message = message;
     }
 
-    public Dto getDto() {
-        return dto;
+    public D getDto() {
+        return data;
     }
 
     public boolean isSuccess() {
@@ -29,7 +29,7 @@ public class ResultResponseDto implements Dto {
     @Override
     public String toString() {
         return "ResultResponseDto{" +
-                "dto=" + dto +
+                "data=" + data +
                 ", isSuccess=" + isSuccess +
                 ", message='" + message + '\'' +
                 '}';
