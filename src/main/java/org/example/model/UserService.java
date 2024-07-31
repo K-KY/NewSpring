@@ -1,15 +1,21 @@
 package org.example.model;
 
 import org.example.dao.user.UserDao;
+import org.example.dto.LoginRequestDto;
 import org.example.dto.ResultResponseDto;
 import org.example.dto.register.RegisterDto;
+import org.example.dto.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class UserService {
 
     @Autowired
     private UserDao userDao;
 
+    private static final Map<String, UserDto> temp = new HashMap<>();
 
     public ResultResponseDto<RegisterDto> register(RegisterDto registerDto) {
         if (validateDto(registerDto)) {
@@ -30,4 +36,21 @@ public class UserService {
                 || registerDto.getUserRegion() == null || registerDto.getUserRegion().equals("")
                 || registerDto.getUserSecret() == null || registerDto.getUserSecret().equals("");
     }
+
+    public ResultResponseDto<Object> login(LoginRequestDto loginRequestDto) {
+        UserDto userDto = null;
+        if (temp.containsKey(loginRequestDto.getUserEmail())) {
+            userDto = temp.get(loginRequestDto.getUserEmail());
+        }
+        if (userDto == null) {
+            userDto = userDao.select(loginRequestDto.getUserEmail());
+        }
+        if (userDto != null && userDto.getUserSecret().equals(loginRequestDto.getUserSecret())) {
+            temp.put(userDto.getUserEmail(), userDto);
+            return new ResultResponseDto<>(userDto, true, "로그인 성공");
+        }
+        return new ResultResponseDto<>(loginRequestDto, false, "로그인 실패");
+    }
+
+
 }

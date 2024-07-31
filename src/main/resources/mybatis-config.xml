@@ -7,6 +7,7 @@
         <!-- 여기에 설정 해놓은게 UserMapper에서 resultType을 간편하게 사용 가능-->
         <typeAlias alias="UserDto" type="org.example.dto.user.UserDto"/>
         <typeAlias alias="RegisterDto" type="org.example.dto.register.RegisterDto"/>
+        <typeAlias alias="LoginRequestDto" type="org.example.dto.LoginRequestDto"/>
     </typeAliases>
 
 

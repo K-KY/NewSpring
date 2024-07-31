@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface UserDao {
     UserDto select(String userEmail);
 
+
     boolean insert(RegisterDto registerDto);
 
     boolean exist(String userEmail);

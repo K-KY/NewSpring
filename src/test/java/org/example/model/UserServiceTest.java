@@ -1,11 +1,13 @@
 package org.example.model;
 
+import org.example.dto.LoginRequestDto;
 import org.example.dto.ResultResponseDto;
 import org.example.dto.register.RegisterDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +24,7 @@ public class UserServiceTest {
     private UserService userService;
 
     @Test
+    @Commit
     @Transactional
     @DisplayName("중복되는 Email은 저장하지 않는다.")
     void register_fail() {
@@ -51,6 +54,24 @@ public class UserServiceTest {
         assertThat(responseDto.getMessage()).isEqualTo("모든 값을 입력 해 주세요.");
         assertThat(responseDto.isSuccess()).isFalse();
         System.out.println("responseDto = " + responseDto);
+    }
+
+    @Test
+    @DisplayName("이메일과 비밀번호가 같으면 로그인 성공")
+    void login_success() {
+        ResultResponseDto<Object> login = userService.login(new LoginRequestDto("1234.com", "0000"));
+        assertThat(login.getMessage()).isEqualTo("로그인 성공");
+        assertThat(login.isSuccess()).isTrue();
+        System.out.println("login = " + login);
+    }
+
+    @Test
+    @DisplayName("이메일과 비밀번호가 다르거나 없으면 로그인 실패")
+    void login_fail() {
+        ResultResponseDto<Object> login = userService.login(new LoginRequestDto("1234.m", "0000"));
+        assertThat(login.getMessage()).isEqualTo("로그인 실패");
+        assertThat(login.isSuccess()).isFalse();
+        System.out.println("login = " + login);
     }
 
 

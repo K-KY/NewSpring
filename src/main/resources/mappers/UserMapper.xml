@@ -5,10 +5,13 @@
 
 
 <mapper namespace="UserMapper">
-    <select id="selectUser" parameterType="String" resultType="UserDto">
-        SELECT * FROM user WHERE userEmail = #{userEmail}
+    <select id="selectUser" parameterType="LoginRequestDto" resultType="UserDto">
+        SELECT * FROM user AS u
+        INNER JOIN userLoginInfo AS uli ON u.userEmail = uli.userEmail
+        WHERE u.userEmail = #{userEmail}
     </select>
     <!-- userName은 파라미터 이름? -->
+
 
     <insert id="insertUser" parameterType="RegisterDto">
         INSERT INTO user (userName, userEmail, userGender, userRegion)
