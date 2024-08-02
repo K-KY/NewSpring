@@ -3,6 +3,7 @@ package org.example.model;
 import org.example.dto.LoginRequestDto;
 import org.example.dto.ResultResponseDto;
 import org.example.dto.register.RegisterDto;
+import org.example.dto.user.UserDto;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,6 +13,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -73,4 +75,16 @@ public class UserServiceTest {
         assertThat(login.isSuccess()).isFalse();
         System.out.println("login = " + login);
     }
+
+    @Test
+    void getAllUsers() {
+        List<UserDto> login = userService.getAllUsers();
+        System.out.println("login = " + login);
+    }
+
+    @Test
+    void countUser() {
+        System.out.println("userService.count() = " + userService.count());
+    }
+
 }

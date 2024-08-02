@@ -5,6 +5,12 @@
 
 
 <mapper namespace="UserMapper">
+
+    <select id="countUsers" resultType="int">
+        SELECT count(*) FROM user
+    </select>
+
+
     <select id="selectUser" parameterType="LoginRequestDto" resultType="UserDto">
         SELECT * FROM user AS u
         INNER JOIN userLoginInfo AS uli ON u.userEmail = uli.userEmail
@@ -12,6 +18,10 @@
     </select>
     <!-- userName은 파라미터 이름? -->
 
+    <select id="selectAllUsers" resultType="UserDto">
+        SELECT * FROM user AS u
+        INNER JOIN userLoginInfo AS uli ON u.userEmail = uli.userEmail
+    </select>
 
     <insert id="insertUser" parameterType="RegisterDto">
         INSERT INTO user (userName, userEmail, userGender, userRegion)

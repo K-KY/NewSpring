@@ -2,9 +2,15 @@ package org.example.dto;
 
 
 public class LoginRequestDto {
-    private final String userEmail;
-    private final String userSecret;
 
+    private String userEmail;
+    private String userSecret;
+
+    // 기본 생성자
+    public LoginRequestDto() {
+    }
+
+    // 매개변수가 있는 생성자
     public LoginRequestDto(String userEmail, String userSecret) {
         this.userEmail = userEmail;
         this.userSecret = userSecret;
@@ -14,8 +20,16 @@ public class LoginRequestDto {
         return userEmail;
     }
 
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
     public String getUserSecret() {
         return userSecret;
+    }
+
+    public void setUserSecret(String userSecret) {
+        this.userSecret = userSecret;
     }
 
     @Override

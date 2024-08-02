@@ -7,13 +7,26 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public class UserDaoImpl implements UserDao {
-
     @Autowired
     private SqlSessionTemplate sqlSession;
 
-    private String namespace = "UserMapper.";
+    public UserDaoImpl() {
+    }
+
+    public UserDaoImpl(SqlSessionTemplate sqlSession) {
+        this.sqlSession = sqlSession;
+    }
+
+    private final String namespace = "UserMapper.";
+
+    @Override
+    public int count() {
+        return sqlSession.selectOne(namespace+ "countUsers");
+    }
 
     @Override
     public UserDto select(String userName) {
@@ -30,6 +43,11 @@ public class UserDaoImpl implements UserDao {
     @Override
     public boolean exist(String userEmail) {
         return sqlSession.selectOne(namespace + "existInUser", userEmail);
+    }
+
+    @Override
+    public List<UserDto> selectAllUsers() {
+        return sqlSession.selectList(namespace + "selectAllUsers");
     }
 
 

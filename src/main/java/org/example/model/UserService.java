@@ -6,14 +6,24 @@ import org.example.dto.ResultResponseDto;
 import org.example.dto.register.RegisterDto;
 import org.example.dto.user.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+@Service
 public class UserService {
 
     @Autowired
     private UserDao userDao;
+
+    public UserService() {
+    }
+
+    public UserService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     private static final Map<String, UserDto> temp = new HashMap<>();
 
@@ -55,5 +65,20 @@ public class UserService {
             userDto = userDao.select(loginRequestDto.getUserEmail());
         }
         return userDto;
+    }
+
+    public List<UserDto> getAllUsers() {
+        return userDao.selectAllUsers();
+    }
+
+    public String test() {
+        if (userDao == null) {
+            System.out.println("null = " + null);
+        }
+        return "Test";
+    }
+
+    public int count() {
+        return userDao.count();
     }
 }
