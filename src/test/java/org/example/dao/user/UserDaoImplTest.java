@@ -1,7 +1,8 @@
 package org.example.dao.user;
 
-import org.example.dto.register.RegisterDto;
-import org.example.dto.user.UserDto;
+import org.example.model.user.dto.RegisterDto;
+import org.example.model.user.dao.UserDao;
+import org.example.model.user.dto.UserDto;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;

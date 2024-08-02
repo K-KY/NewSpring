@@ -29,11 +29,15 @@
         <constructor-arg ref="sqlSessionFactory"/>
     </bean>
 
-    <bean id="userDao" class="org.example.dao.user.UserDaoImpl">
+    <bean id="userDao" class="org.example.model.user.dao.UserDaoImpl">
+        <constructor-arg ref="sqlSession"/>
+    </bean>
+    <bean id="boardDao" class="org.example.model.board.dao.BoardDaoImpl">
         <constructor-arg ref="sqlSession"/>
     </bean>
 
-    <bean id="userService" class="org.example.model.UserService"></bean>
+    <bean id="userService" class="org.example.model.user.UserService"></bean>
+    <bean id="boardService" class="org.example.model.board.BoardService"/>
 
     <bean id="requestMappingHandlerAdapter" class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter">
         <property name="messageConverters">

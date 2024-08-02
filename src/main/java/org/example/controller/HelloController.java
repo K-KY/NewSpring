@@ -2,18 +2,14 @@ package org.example.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
-import org.example.dto.LoginRequestDto;
+import org.example.model.user.dto.LoginRequestDto;
 import org.example.dto.ResultResponseDto;
-import org.example.dto.register.RegisterDto;
-import org.example.dto.user.UserDto;
-import org.example.model.UserService;
+import org.example.model.user.dto.RegisterDto;
+import org.example.model.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 public class HelloController {

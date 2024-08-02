@@ -1,4 +1,4 @@
-package org.example.dto;
+package org.example.model.user.dto;
 
 
 public class LoginRequestDto {

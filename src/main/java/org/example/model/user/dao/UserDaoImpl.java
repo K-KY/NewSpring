@@ -1,8 +1,8 @@
-package org.example.dao.user;
+package org.example.model.user.dao;
 
 
-import org.example.dto.register.RegisterDto;
-import org.example.dto.user.UserDto;
+import org.example.model.user.dto.RegisterDto;
+import org.example.model.user.dto.UserDto;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -29,8 +29,12 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    public UserDto select(String userName) {
-        return sqlSession.selectOne(namespace + "selectUser", userName);
+    public UserDto select(String userEmail) {
+        Object o = sqlSession.selectOne(namespace + "selectUser", userEmail);
+        if (o == null) {
+            return null;
+        }
+        return (UserDto) o;
     }
 
     @Override

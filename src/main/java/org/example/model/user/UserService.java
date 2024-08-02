@@ -1,10 +1,10 @@
-package org.example.model;
+package org.example.model.user;
 
-import org.example.dao.user.UserDao;
-import org.example.dto.LoginRequestDto;
+import org.example.model.user.dao.UserDao;
+import org.example.model.user.dto.LoginRequestDto;
 import org.example.dto.ResultResponseDto;
-import org.example.dto.register.RegisterDto;
-import org.example.dto.user.UserDto;
+import org.example.model.user.dto.RegisterDto;
+import org.example.model.user.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,21 +48,25 @@ public class UserService {
     }
 
     public ResultResponseDto<Object> login(LoginRequestDto loginRequestDto) {
-        UserDto userDto = null;
-        userDto = getUserDto(loginRequestDto, userDto);
+        UserDto userDto = getUserDto(loginRequestDto);
         if (userDto != null && userDto.getUserSecret().equals(loginRequestDto.getUserSecret())) {
-            temp.put(userDto.getUserEmail(), userDto);
+            temp.clear();
             return new ResultResponseDto<>(userDto, true, "로그인 성공");
         }
-        return new ResultResponseDto<>(loginRequestDto, false, "로그인 실패");
+        return new ResultResponseDto<>(loginRequestDto,false, "로그인 실패");
     }
 
-    private UserDto getUserDto(LoginRequestDto loginRequestDto, UserDto userDto) {
+    private UserDto getUserDto(LoginRequestDto loginRequestDto) {
+        UserDto userDto;
         if (temp.containsKey(loginRequestDto.getUserEmail())) {
             userDto = temp.get(loginRequestDto.getUserEmail());
+            return userDto;
         }
-        if (userDto == null) {
-            userDto = userDao.select(loginRequestDto.getUserEmail());
+
+        userDto = userDao.select(loginRequestDto.getUserEmail());
+
+        if (userDto != null) {
+            temp.put(userDto.getUserEmail(), userDto);
         }
         return userDto;
     }

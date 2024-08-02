@@ -1,4 +1,4 @@
-package org.example.dto.register;
+package org.example.model.user.dto;
 
 import org.example.dto.Dto;
 

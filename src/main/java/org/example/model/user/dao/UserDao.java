@@ -1,7 +1,7 @@
-package org.example.dao.user;
+package org.example.model.user.dao;
 
-import org.example.dto.register.RegisterDto;
-import org.example.dto.user.UserDto;
+import org.example.model.user.dto.RegisterDto;
+import org.example.model.user.dto.UserDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

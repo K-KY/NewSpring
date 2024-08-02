@@ -12,7 +12,7 @@
 
 
     <select id="selectUser" parameterType="LoginRequestDto" resultType="UserDto">
-        SELECT * FROM user AS u
+        SELECT u.userName, u.userGender, u.userRegion, uli.userEmail, uli.userSecret FROM user AS u
         INNER JOIN userLoginInfo AS uli ON u.userEmail = uli.userEmail
         WHERE u.userEmail = #{userEmail}
     </select>

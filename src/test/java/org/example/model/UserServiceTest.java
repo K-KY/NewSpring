@@ -1,9 +1,10 @@
 package org.example.model;
 
-import org.example.dto.LoginRequestDto;
+import org.example.model.user.dto.LoginRequestDto;
 import org.example.dto.ResultResponseDto;
-import org.example.dto.register.RegisterDto;
-import org.example.dto.user.UserDto;
+import org.example.model.user.dto.RegisterDto;
+import org.example.model.user.dto.UserDto;
+import org.example.model.user.UserService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

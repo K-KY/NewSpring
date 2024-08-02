@@ -1,4 +1,4 @@
-package org.example.dto.user;
+package org.example.model.user.dto;
 
 public class UserDto {
     private String userEmail;
